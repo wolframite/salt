@@ -7,3 +7,6 @@ base:
   
   'mail.e36.sg':
     - customer
+
+  'utgard.m18.org':
+    - customer
