@@ -87,6 +87,7 @@ apache:
 
 {% endfor %}
 
+{% if 'subdomains' in userinfo %}
 {% for subdomain, domain in userinfo['subdomains'].iteritems() %}
 
 /var/www/{{ domain }}/subdomains/{{ subdomain }}:
@@ -133,6 +134,8 @@ apache:
       - file: /etc/apache2/sites-available/{{ domain }}_{{ subdomain }}
 
 {% endfor %}
+{% endif %}
+
 {% endif %}
 {% endfor %}
 

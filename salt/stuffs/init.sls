@@ -1,2 +1,5 @@
-pwgen:
-  pkg.installed
+stuffs:
+  pkg.installed:
+    - pkgs:
+      - pwgen
+      - unzip
