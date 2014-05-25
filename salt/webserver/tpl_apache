@@ -9,7 +9,7 @@
         CustomLog /var/www/{{ domain_name }}/log/access.log combined
 
         <Directory /var/www/{{ domain_name }}/public>
-                AllowOverride FileInfo Indexes AuthConfig
-                Options -Indexes
+                AllowOverride FileInfo Indexes AuthConfig Options=FollowSymLinks
+                Options -Indexes +FollowSymLinks
         </Directory>
 </VirtualHost>
