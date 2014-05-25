@@ -12,6 +12,7 @@ hosting:
     - fullname: {{ userinfo['fullname'] }}
     - shell: {{ userinfo['shell'] }}
     - groups: {{ userinfo['groups'] }}
+    - createhome: False
 
 {% endif %}
 {% endfor %}

@@ -37,6 +37,12 @@ apache:
     - mode: 755       
     - makedirs: true  
 
+{{user}}-home:
+  user.present:
+    - name: {{ user }}
+    - home: /var/www/{{ domain }}
+    - require: [ file: /var/www/{{ domain }} ]
+
 /var/www/{{ domain }}/public:
   file.directory:   
     - user: {{ user }}
