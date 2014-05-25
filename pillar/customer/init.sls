@@ -6,4 +6,8 @@ customers:
     email: josef.pachulke@fuckgoogle.com
     domains:
       - josefpachulke.com
-    databases: { josefpachulke: supersecret }
+    subdomains: { mycoolsubdomain: josefpachulke.com, testdomain: josefpachulke.com }
+    databases: { josefpachulke: supersecretpw }
+    groups: 
+     - users
+     - hosting

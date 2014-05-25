@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+        ServerName {{ subdomain_name }}.{{ domain_name }}
+
+        ServerAdmin {{ server_admin }}
+        DocumentRoot /var/www/{{ domain_name }}/subdomains/{{ subdomain_name }}/public
+
+        ErrorLog /var/www/{{ domain_name }}/subdomains/{{ subdomain_name }}/log/error.log
+        CustomLog /var/www/{{ domain_name }}/subdomains/{{ subdomain_name }}/log/access.log combined
+
+        <Directory /var/www/{{ domain_name }}/subdomains/{{ subdomain_name }}/public>
+                AllowOverride FileInfo Indexes
+                Options -Indexes
+        </Directory>
+</VirtualHost>

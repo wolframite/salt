@@ -18,9 +18,6 @@ base:
     - mysql   
     - ftp
 
-  'mail.vault-tec.de':
-    - webserver.{{ pillar['webserver'][grains['id']] }}
-
   'utgard.m18.org':
     - user.customer
     - webserver.{{ pillar['webserver'][grains['id']] }}

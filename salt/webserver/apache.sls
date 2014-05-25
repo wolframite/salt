@@ -37,6 +37,17 @@ apache:
     - mode: 755       
     - makedirs: true  
 
+{% if 'subdomains' in userinfo %}
+/var/www/{{ domain }}/subdomains:
+  file.directory:     
+    - user: root      
+    - group: root     
+    - mode: 755       
+    - makedirs: true  
+    - require: 
+      - file: /var/www/{{ domain }}
+{% endif %}
+
 {{user}}-home:
   user.present:
     - name: {{ user }}
@@ -73,6 +84,53 @@ apache:
 /etc/apache2/sites-enabled/{{ domain }}.conf:
   file.symlink:
     - target: /etc/apache2/sites-available/{{ domain }}
+
+{% endfor %}
+
+{% for subdomain, domain in userinfo['subdomains'].iteritems() %}
+
+/var/www/{{ domain }}/subdomains/{{ subdomain }}:
+  file.directory:   
+    - user: root    
+    - group: root   
+    - mode: 755     
+    - makedirs: true
+    - require: 
+      - file: /var/www/{{ domain }}/subdomains
+
+/var/www/{{ domain }}/subdomains/{{ subdomain }}/public:
+  file.directory:     
+    - user: {{ user }}      
+    - group: www-data     
+    - mode: 750       
+    - makedirs: true
+    - require: 
+      - file: /var/www/{{ domain }}/subdomains/{{ subdomain }}
+
+/var/www/{{ domain }}/subdomains/{{ subdomain }}/log:
+  file.directory:     
+    - user: www-data
+    - group: {{ user }}  
+    - mode: 750   
+    - makedirs: true  
+    - require: 
+      - file: /var/www/{{ domain }}/subdomains/{{ subdomain }}
+
+/etc/apache2/sites-available/{{ domain }}_{{ subdomain }}:
+  file:
+    - managed
+    - source: salt://webserver/tpl_apache_subdomain
+    - template: jinja
+    - defaults:
+        domain_name: {{ domain }}
+        server_admin: {{ userinfo['email'] }}
+        subdomain_name: {{ subdomain }}
+
+/etc/apache2/sites-enabled/{{ domain }}_{{ subdomain }}.conf:
+  file.symlink:
+    - target: /etc/apache2/sites-available/{{ domain }}_{{ subdomain }}
+    - require: 
+      - file: /etc/apache2/sites-available/{{ domain }}_{{ subdomain }}
 
 {% endfor %}
 {% endif %}
