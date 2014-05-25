@@ -16,7 +16,7 @@ db_{{ user }}:
     - name: {{ db }}
 
   mysql_grants.present:
-    - grant: select,insert,update
+    - grant: all privileges
     - database: {{ db }}.*
     - user: {{ user }}
     - host: localhost

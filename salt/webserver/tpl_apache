@@ -9,7 +9,7 @@
         CustomLog /var/www/{{ domain_name }}/log/access.log combined
 
         <Directory /var/www/{{ domain_name }}/public>
-                AllowOverride FileInfo Indexes
+                AllowOverride FileInfo Indexes AuthConfig
                 Options -Indexes
         </Directory>
 </VirtualHost>
