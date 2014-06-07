@@ -4,6 +4,7 @@ customers:
     fullname: josef.pachulke
     shell: /usr/sbin/nologin
     email: josef.pachulke@fuckgoogle.com
+    opendkim: True
     domains:
       - josefpachulke.com
     subdomains: { mycoolsubdomain: josefpachulke.com, testdomain: josefpachulke.com }

@@ -48,7 +48,7 @@ apache:
       - file: /var/www/{{ domain }}
 {% endif %}
 
-{{user}}-home:
+{{ user }}-{{ domain }}-home:
   user.present:
     - name: {{ user }}
     - home: /var/www/{{ domain }}

@@ -7,7 +7,7 @@ hosting:
 {% for user, userinfo in pillar['customers'].iteritems() %}
 {% if host_id == userinfo['server'] %}
 
-{{user}}:
+{{ user }}:
   user.present:
     - fullname: {{ userinfo['fullname'] }}
     - shell: {{ userinfo['shell'] }}
