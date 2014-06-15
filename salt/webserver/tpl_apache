@@ -1,6 +1,6 @@
 <VirtualHost *:80>
         ServerName {{ domain_name }}
-        ServerAlias www.{{ domain_name }}
+        ServerAlias www.{{ domain_name }} {{ aliases }}
 
         ServerAdmin {{ server_admin }}
         DocumentRoot /var/www/{{ domain_name }}/public
@@ -9,7 +9,7 @@
         CustomLog /var/www/{{ domain_name }}/log/access.log combined
 
         <Directory /var/www/{{ domain_name }}/public>
-                AllowOverride FileInfo Indexes AuthConfig Options=FollowSymLinks
+                AllowOverride FileInfo Indexes AuthConfig Limit Options=FollowSymLinks
                 Options -Indexes +FollowSymLinks
         </Directory>
 </VirtualHost>

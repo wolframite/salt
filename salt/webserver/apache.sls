@@ -21,6 +21,12 @@ apache:
 
 {% for domain in userinfo['domains'] %}
 
+{% if 'aliases' in userinfo and domain in userinfo['aliases'] %}
+{% set domain_aliases = userinfo['aliases'][domain] %}
+{% else %}
+{% set domain_aliases = "" %}
+{% endif %}
+
 /etc/apache2/sites-available/{{ domain }}:
   file:
     - managed
@@ -29,6 +35,7 @@ apache:
     - defaults:
         domain_name: {{ domain }}
         server_admin: {{ userinfo['email'] }}
+        aliases: {{ domain_aliases|string() }}
 
 /var/www/{{ domain }}:
   file.directory:     
