@@ -40,6 +40,6 @@ whuesken:
   file:
     - managed
     - source: salt://user/sudo_vault
-    - mode: 644
+    - mode: 440
     - require: 
       - pkg: sudo
