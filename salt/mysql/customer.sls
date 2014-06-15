@@ -10,7 +10,7 @@ check_for_userdb_{{ db }}:
   mysql_database.present:
     - name: {{ db }}
 
-db_{{ user }}:
+db_{{ user }}_{{ db }}:
   mysql_user.present:
     - name: {{ user }}
 {% if userinfo['dbserver'] != userinfo['server'] %}
@@ -32,7 +32,7 @@ db_{{ user }}:
     - host: localhost
 {% endif %}
     - grant_option: False
-    - require: [ mysql_database: check_for_userdb_{{ db }}, mysql_user: db_{{ user }} ]
+    - require: [ mysql_database: check_for_userdb_{{ db }}, mysql_user: db_{{ user }}_{{ db }} ]
 {% endfor %}
 {% endif %}
 {% endfor %}
