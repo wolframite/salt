@@ -5,8 +5,11 @@ base:
   'mail.m18.org':
     - customer
   
-  'mail.e36.sg':
+  'mail2.m18.org':
     - customer
 
   'utgard.m18.org':
+    - customer
+
+  'attic.m18.org':
     - customer

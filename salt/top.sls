@@ -4,7 +4,7 @@ base:
     - joe
     - stuffs
   
-  'mail.e36.sg':
+  'mail2.m18.org':
     - user.customer
     - webserver.{{ pillar['webserver'][grains['id']] }}
     - php.{{ pillar['webserver'][grains['id']] }}
@@ -28,3 +28,10 @@ base:
     - user.customer
     - webserver.{{ pillar['webserver'][grains['id']] }}
     - php.{{ pillar['webserver'][grains['id']] }}
+
+  'attic.m18.org':
+    - user.customer
+    - mysql.client
+    - webserver.{{ pillar['webserver'][grains['id']] }}
+    - php.{{ pillar['webserver'][grains['id']] }}
+    - ftp
