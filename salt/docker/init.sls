@@ -1,4 +1,4 @@
-{% if grains['os'] == 'Ubuntu' and grains['osrelease']|int() >= 13 %}
+{% if grains['os'] == 'Ubuntu' and grains['osrelease']|int() >= 13 and grains['osrelease']|int() <= 14 %}
 
 docker_repo_ubuntu:
   pkgrepo.managed:
