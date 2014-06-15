@@ -7,7 +7,8 @@ php-base:
       - php5-mcrypt
       - php5-gd
       - php5-imap
-{% if grains['os'] == 'Ubuntu' %}      
+      - php5-mysql
+{% if grains['os'] == 'Ubuntu' and grains['osrelease']|int() > 13 %}
       - php5-readline
       - php5-json
 {% endif %}
