@@ -18,7 +18,11 @@ whuesken:
     - groups:
       - adm
       - users
+{% if grains['os'] == 'CentOS' %}
+      - wheel
+{% else %}
       - sudo
+{% endif %}
     - require: [ group: adm, group: users, pkg: sudo ]
   ssh_auth:
     - present
